@@ -69,7 +69,7 @@ def calculate_summary(data):
     sorted_speeds = sorted(speeds, reverse=True)
     max_speed = sorted_speeds[0]
     max_speed_95 = sorted_speeds[int(len(sorted_speeds) * 0.95)]
-    avg_speed = sum(speeds) / len(speeds)
+    avg_speed = round(sum(speeds) / len(speeds), 1) # round to 1 decimal place
     earliest_timestamp = min([d[0] for d in data])
     return {
         "timestamp": earliest_timestamp,
