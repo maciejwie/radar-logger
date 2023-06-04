@@ -68,7 +68,9 @@ def calculate_summary(data):
     speeds = [d[1] for d in data]
     sorted_speeds = sorted(speeds, reverse=True)
     max_speed = sorted_speeds[0]
-    max_speed_95 = sorted_speeds[int(len(sorted_speeds) * 0.95)]
+    # Find the indices which cover the slowest 95% of speeds
+    num_samples_95 = int(len(sorted_speeds) * 0.05)
+    max_speed_95 = max(sorted_speeds[num_samples_95:])
     avg_speed = round(sum(speeds) / len(speeds), 1) # round to 1 decimal place
     earliest_timestamp = min([d[0] for d in data])
     return {
